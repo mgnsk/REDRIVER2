@@ -40,6 +40,16 @@ chmod +x REDRIVER2-x86_64.AppImage
 2. In Desktop Mode, open Steam → *Add a Game* → *Add a Non-Steam Game* → browse to the AppImage.
 3. In Game Mode, set the controller layout to *Gamepad*. The game uses SDL's game controller mapping (see `[controls_game]` in `config.ini`).
 
+### Analog controls
+
+Like a real DualShock, the controller starts in **digital mode**. Press **Select + Start** together (on the Steam Deck, **View ⧉ + Menu ☰**) to switch analog mode on or off. In analog mode:
+
+- the left stick steers proportionally and moves Tanner on foot
+- the right stick turns Tanner and lets him look around
+- rumble works
+
+Analog mode is not remembered between launches. Pressing a keyboard key while a pad is connected switches back to digital.
+
 ## Notes
 
 - Graphics use the bundled Mesa (radeonsi/iris/llvmpipe…), launched through the bundled `ld-linux`. That's why the image works on any distribution and needs no user namespaces. On systems with the proprietary NVIDIA driver it renders with llvmpipe (software).
