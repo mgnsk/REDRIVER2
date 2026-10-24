@@ -65,12 +65,13 @@ n=0
 for cd in "$CD1" "$CD2"; do
 	n=$((n + 1))
 	idx="$WORK/cd$n.idx"
-	"${JPSXDEC[@]}" -f "$cd" -x "$idx" > "$WORK/cd$n-index.log"
+	(cd "$WORK" && "${JPSXDEC[@]}" -f "$cd" -x "$idx" > "$WORK/cd$n-index.log")
 	# same settings as data/install/conv.sh; output lands in ./DRIVER2/...
 	(cd "$DATA" &&
 		"${JPSXDEC[@]}" -x "$idx" -a video -quality psx -vf avi:mjpg -up Lanczos3 > "$WORK/cd$n-video.log" &&
 		"${JPSXDEC[@]}" -x "$idx" -a audio -quality psx -af wav > "$WORK/cd$n-audio.log")
 done
+rm -f "$DATA"/*.log # jpsxdec writes its logs to the working directory
 
 echo "==> Adding REDRIVER2 data (overrides disc files)"
 cp -a "$ROOT/data/DRIVER2/." "$DATA/DRIVER2/"
